@@ -1,6 +1,11 @@
 plugins {
     id 'java'
+    id 'checkstyle'
+    id 'com.adarshr.test-logger' version '3.0.0'
+    id 'com.github.ben-manes.versions' version '0.39.0'
+    id 'jacoco'
 }
+
 
 group = 'hexlet.code'
 version = '1.0-SNAPSHOT'
@@ -12,8 +17,19 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.21.0'
+
 }
 
 test {
     useJUnitPlatform()
+}
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+checkstyle {
+    toolVersion '9.0'
 }
